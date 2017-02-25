@@ -43,7 +43,7 @@ def spiltDataSet(dataSet, feature, value):
 
 
 def chooseBestSpiltFeat(dataSet):
-    numFeat = len(dataSet[0e]) - 1
+    numFeat = len(dataSet[0]) - 1
     baseEntropy = calShannonEnt(dataSet)
     bestInfoGain = 0
     bestFeat = -1
@@ -63,8 +63,9 @@ def chooseBestSpiltFeat(dataSet):
 
 
 # -----------------------------------test------------------------------
-myData, labels = createDateSet()
-myData
-print calShannonEnt(myData)
-print spiltDataSet(myData, 0, 0)
-print 'the best spilt feature is' , chooseBestSpiltFeat(myData)
+if __name__ == '__main__':
+    myData, labels = createDateSet()
+    myData
+    print calShannonEnt(myData)
+    print spiltDataSet(myData, 0, 0)
+    print 'the best spilt feature is', chooseBestSpiltFeat(myData)

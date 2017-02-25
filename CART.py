@@ -13,3 +13,5 @@ def loadDdataSet(fileName):
 def binarySplitData(dataSet, feature, value):
 	mat0 = dataSet[nonzero(dataSet[:, feature] > value)[0], :][0]
 	mat1 = dataSet[nonzero(dataSet[:, feature] <= value)[0], :][0]
+
+# ======================Not finished, update=============================

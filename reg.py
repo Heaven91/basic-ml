@@ -108,10 +108,10 @@ def mseErr(yMat, yHat):
 
 
 def regulize(xMat):
-    inMat = xMat.copy()#note:don't change the original xmat
+    inMat = xMat.copy()  # note:don't change the original xmat
     xmeans = mean(inMat, 0)
     xvar = var(inMat, 0)
-    return array((inMat - xmeans))/ array(xvar)
+    return array((inMat - xmeans)) / array(xvar)
 
 # stage regression algorithm: given weights a intinal value, then + or - a step size for ecah feature, if loss error is reduced, then update
 # weights to the new value
@@ -120,7 +120,8 @@ def regulize(xMat):
 def stageRegres(xArr, yArr, stepsize=0.01, numIt=100):
     xMat = mat(xArr)
     yMat = mat(yArr)
-    m, n = shape(xMat)  # m,n represent the number of samples and features respectively
+    # m,n represent the number of samples and features respectively
+    m, n = shape(xMat)
     # normalization------------
     xMat = regulize(xMat)
     # xmeans = mean(xMat, 0)
@@ -130,10 +131,12 @@ def stageRegres(xArr, yArr, stepsize=0.01, numIt=100):
     yMat -= mean(yMat, 0)
     retWsMat = zeros((numIt, n))
 
-    ws = zeros((n, 1)); wsTest = ws.copy(); wsBest = ws.copy()
+    ws = zeros((n, 1))
+    wsTest = ws.copy()
+    wsBest = ws.copy()
     for i in range(numIt):
         lowestErr = inf
-        for j in range(n): 
+        for j in range(n):
             for sign in [-1, 1]:
                 wsTest = ws.copy()
                 wsTest[j] += stepsize * sign
@@ -143,20 +146,16 @@ def stageRegres(xArr, yArr, stepsize=0.01, numIt=100):
                     lowestErr = rse
                     wsBest = wsTest
             ws = wsBest.copy()
-        retWsMat[i,:] = ws.T
+        retWsMat[i, :] = ws.T
     return retWsMat
 
 
-
-
-    
-
-
 # ==============================test=====================================
-print "test algorithms..."
-xArr, yArr = loadDataSet('ex0.txt')
-yArr = reshape(yArr, (len(yArr), 1))
-# ws = standardLR(xArr, yArr)
-# print ws
-retMat = stageRegres(xArr, yArr)
-print retMat
+if __name__ == '__main__':
+    print "test algorithms..."
+    xArr, yArr = loadDataSet('ex0.txt')
+    yArr = reshape(yArr, (len(yArr), 1))
+    # ws = standardLR(xArr, yArr)
+    # print ws
+    retMat = stageRegres(xArr, yArr)
+    print retMat

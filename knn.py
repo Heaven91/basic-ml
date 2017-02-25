@@ -157,15 +157,16 @@ def handDigitsRecognition():
         if estimateLabel != testLabel:
             errorNum += 1
             print "error"
-    print "uncorrected recognized number is: %d, the error rate is: %.4f" %(errorNum, float(errorNum) / n)
+    print "uncorrected recognized number is: %d, the error rate is: %.4f" % (errorNum, float(errorNum) / n)
 
 # --------------------------------------test-----------------------------
-# sample, label = createDataSet()
-# print knn([0, 0], sample, label, 3)
-# sample, label = file2Arr('datingTestSet2.txt')
-# print "sample is:", sample
-# print "label is :", label
-# print autoNorm(sample)
-# testDating('data/datingTestSet.txt')
-# testPerson('data/datingTestSet.txt')
-# handDigitsRecognition()
+if __name__ == '__main__':
+    sample, label = createDataSet()
+    print knn([0, 0], sample, label, 3)
+    sample, label = file2Arr('data/datingTestSet2.txt')
+    print "sample is:", sample
+    print "label is :", label
+    print autoNorm(sample)
+    testDating('data/datingTestSet.txt')
+    testPerson('data/datingTestSet.txt')
+    handDigitsRecognition()

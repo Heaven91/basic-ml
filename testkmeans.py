@@ -70,8 +70,9 @@ def clusterPlot(dataArr, centor, clusterindex):
 
 
 # =============================TEST===========================
-dataMat = loadDataSet('data/kmeans_testSet.txt')
-# centor = randCentor(dataMat, 4)
-a, b = kmeansCluster(dataMat, 4)
-print a, '\n', b
-clusterPlot(array(dataMat), a, b)
+if __name__ == '__main__':
+    dataMat = loadDataSet('data/kmeans_testSet.txt')
+    # centor = randCentor(dataMat, 4)
+    a, b = kmeansCluster(dataMat, 4)
+    print a, '\n', b
+    clusterPlot(array(dataMat), a, b)

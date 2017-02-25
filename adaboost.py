@@ -99,7 +99,7 @@ def trainAdaBoost(dataArr, classLabels, numIt=40):
         stumpArr.append(stump)
         expon = multiply(-1. * alpha * mat(classLabels).T, classEst)
         print "the index is :", expon.T
-        D = multiply(D, exp(expon))
+        D = multiply(D, exp(expon))     # something wrong happened here, will be removed later
         D = D / D.sum()
         aggClassEst += alpha * classEst
         print "the weighted classifier class estimate is :", aggClassEst.T
@@ -123,8 +123,9 @@ def testAdaBoost(dataArr, setofClassifiers):
 
 
 # --------------------------test---------------
-myData, labels = createData()
-print myData, labels
-D = mat(ones((5, 1)) / 5)
-# buildStump(myData, labels, D)  # test for single step classification
-stumpArr = trainAdaBoost(myData, labels)
+if __name__ == '__main__':
+    myData, labels = createData()
+    print myData, labels
+    D = mat(ones((5, 1)) / 5)
+    # buildStump(myData, labels, D)  # test for single step classification
+    stumpArr = trainAdaBoost(myData, labels)

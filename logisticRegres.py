@@ -91,7 +91,8 @@ def splitLinePlot(dataArr, target, weights):
     plt.show()
 
 # =================================test===================
-dataArr, label = loadData('data/logisTestSet.txt')
-weights = stocasGrad0(dataArr, label)
-print "weights are:", weights
-splitLinePlot(dataArr, label, weights)
+if __name__ == '__main__':
+    dataArr, label = loadData('data/logisTestSet.txt')
+    weights = stocasGrad0(dataArr, label)
+    print "weights are:", weights
+    splitLinePlot(dataArr, label, weights)

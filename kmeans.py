@@ -37,21 +37,21 @@ def kmeansCluster(dataArr, k):
     while ptClassChanged:
         ptClassChanged = False
         for i in xrange(m):
-        	minDist = inf
-        	minIndex = -1
-        	for j in xrange(k):
-        		retDist = eculdDistance(dataArr[i, :], centor[j, :])
-            	if retDist < minDist:
-                	minDist = retDist
-               		minIndex = j
-        		if clusterIndex[i, 0] != minIndex:
-        			ptClassChanged = True
-        	clusterIndex[i, :] = array([minIndex, minDist])
-		print centor
+            minDist = inf
+            minIndex = -1
+            for j in xrange(k):
+                retDist = eculdDistance(dataArr[i, :], centor[j, :])
+            if retDist < minDist:
+                minDist = retDist
+                minIndex = j
+                if clusterIndex[i, 0] != minIndex:
+                    ptClassChanged = True
+            clusterIndex[i, :] = array([minIndex, minDist])
+            print centor
 
-    	for cluster in xrange(k):
-        	kclusterData = dataArr[nonzero(clusterIndex[:, 0] == cluster)[0]]
-        	centor[cluster, :] = kclusterData.mean(0)
+        for cluster in xrange(k):
+            kclusterData = dataArr[nonzero(clusterIndex[:, 0] == cluster)[0]]
+            centor[cluster, :] = kclusterData.mean(0)
     return centor, clusterIndex
 
 
@@ -61,7 +61,7 @@ def clusterPlot(dataArr, centor, clusterindex):
     ax = fig.add_subplot(111)
     ax.scatter(dataArr[:, 0], dataArr[:, 1], c=20 *
                clusterindex[:, 0], s=50, edgecolors='white')
-    ax.scatter(centor[:, 0], centor[:, 1], s=70, marker='s',c='red')
+    ax.scatter(centor[:, 0], centor[:, 1], s=70, marker='s', c='red')
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.title('kmeans cluster')
@@ -70,8 +70,9 @@ def clusterPlot(dataArr, centor, clusterindex):
 
 
 # =============================TEST===========================
-dataMat = loadDataSet('data/kmeans_testSet.txt')
-# centor = randCentor(dataMat, 4)
-a, b = kmeansCluster(dataMat, 4)
-print a, '\n', b
-clusterPlot(array(dataMat), a, b)
+if __name__ == '__main__':
+    dataMat = loadDataSet('data/kmeans_testSet.txt')
+    # centor = randCentor(dataMat, 4)
+    a, b = kmeansCluster(dataMat, 4)
+    print a, '\n', b
+    clusterPlot(array(dataMat), a, b)
